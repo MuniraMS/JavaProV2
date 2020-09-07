@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.javapro">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".slidesjavaone.listofslides"></activity>
+        <activity android:name=".videosjavaone.videos" />
+        <activity android:name=".books.textbook" />
+        <activity android:name=".materials.javatwo" />
+        <activity android:name=".materials.javaone" />
+        <activity android:name=".general.courses" />
+        <activity android:name=".general.login" />
+        <activity android:name=".general.register" />
+        <activity android:name=".practicaljavaone.j1practical1" />
+        <activity android:name=".practicaljavaone.listofprexercisesj1" />
+        <activity android:name=".theorjavaone.J1exercise1" />
+        <activity android:name=".theorjavaone.listofexercisesj1" />
+        <activity android:name=".general.firstActivity" />
+        <activity android:name=".general.MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

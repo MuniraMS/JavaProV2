@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">JavaPro</string>
+    <string name="already_have_an_account">Already have an account? <font fgcolor='#00828f'>Login</font></string>
+    <string name="numbers"><![CDATA[123456<fontcolor="#FF0000">789</font>]]></string>
+</resources>
