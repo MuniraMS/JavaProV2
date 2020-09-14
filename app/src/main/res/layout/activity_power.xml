@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#f4f3f3"
+    tools:context=".practicaljavaone.power">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/question"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:textSize="15dp"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:textColor="#000000"
+                android:text="TextView" />
+
+            <Button
+                android:id="@+id/ansr"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#00828f"
+                android:textColor="#f4f3f3"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"
+                android:textSize="15dp"
+                android:text="Press here to see model answer" />
+
+            <Button
+                android:id="@+id/comp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#00828f"
+                android:textColor="#f4f3f3"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"
+                android:textSize="15dp"
+                android:onClick="gotocompiler"
+                android:text="Press here to try to run your code." />
+            <Button
+                android:id="@+id/back"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#00828f"
+                android:textColor="#f4f3f3"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"
+                android:textSize="15dp"
+                android:text="Go back to the practical exercises" />
+
+            <TextView
+                android:id="@+id/answer_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginRight="20dp"
+                android:background="#F3F3F3"
+                android:shadowColor="#222020"
+                android:visibility="gone"
+                android:textColor="#181919" />
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

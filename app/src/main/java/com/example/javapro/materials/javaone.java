@@ -4,10 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.javapro.R;
 import com.example.javapro.books.textbook;
 import com.example.javapro.practicaljavaone.listofprexercisesj1;
+import com.example.javapro.practicaljavatwo.listofprexercisesj2;
 import com.example.javapro.videosjavaone.videos;
 import com.example.javapro.slidesjavaone.listofslides;
 import com.example.javapro.theorjavaone.listofexercisesj1;
-
+import com.example.javapro.general.courses;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -16,7 +17,7 @@ import android.view.View;
 import android.widget.Button;
 
 public class javaone extends AppCompatActivity implements View.OnClickListener {
-    Button txtbook,slide,pr,theor,video;
+    Button txtbook,slide,pr,theor,video,back;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,6 +32,8 @@ public class javaone extends AppCompatActivity implements View.OnClickListener {
         theor.setOnClickListener(this);
         video = (Button) findViewById(R.id.video);
         video.setOnClickListener(this);
+        back = (Button) findViewById(R.id.back);
+        back.setOnClickListener(this);
     }
     public void onClick(View v) {
         if (v.getId() == R.id.book) {
@@ -72,6 +75,11 @@ public class javaone extends AppCompatActivity implements View.OnClickListener {
                     });
             final AlertDialog alert = builder1.create();
             alert.show();
+        }
+        else
+        if (v.getId() == R.id.back) {
+            Intent intent = new Intent(javaone.this, courses.class);
+            startActivity(intent);
         }
 }
 }

@@ -2,7 +2,6 @@ package com.example.javapro.theorjavaone;
 
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.javapro.R;
-
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -13,7 +12,6 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.view.View;
 import android.widget.Toast;
-
 
 public class J1exercise1 extends AppCompatActivity {
     TextView tv;
@@ -103,11 +101,12 @@ public class J1exercise1 extends AppCompatActivity {
 
             }
             });
+        correct = 0;
+        wrong = 0;
         quitbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(getApplicationContext(),listofexercisesj1.class);
-                startActivity(intent);
+              finish();
             }
         });
 

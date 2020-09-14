@@ -2,12 +2,17 @@ package com.example.javapro.slidesjavaone;
 
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.javapro.R;
+import com.example.javapro.materials.javaone;
+
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-
+import android.widget.Button;
 public class listofslides extends AppCompatActivity {
     ListView lstview;
+    Button back;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,6 +27,13 @@ public class listofslides extends AppCompatActivity {
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,
                 android.R.id.text1,titles);
         lstview.setAdapter(adapter);
-
+        back = (Button) findViewById(R.id.back);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(listofslides.this, javaone.class);
+                startActivity(intent);
+            }
+        });
     }
 }

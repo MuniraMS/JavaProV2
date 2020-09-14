@@ -11,10 +11,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 
 public class videos extends AppCompatActivity {
     ListView lstview;
+    Button back;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,21 +48,71 @@ public class videos extends AppCompatActivity {
         lstview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                if (position==0){
-                    goToUrl("https://youtu.be/FbviMTJ_vP8");
+                switch(position) {
+
+                    case 0:
+                        goToUrl("https://youtu.be/FbviMTJ_vP8");
+                        break;
+                    case 1:
+                        goToUrl("https://youtu.be/KYhy6Q914C0");
+                        break;
+                    case 2:
+                        goToUrl("https://youtu.be/pleAjW8KJrg");
+                        break;
+                    case 3:
+                        goToUrl("https://youtu.be/0uU-DwqpY74");
+                        break;
+                    case 4:
+                        goToUrl("https://youtu.be/0Nb4wHNj5bE");
+                        break;
+                    case 5:
+                        goToUrl("https://youtu.be/eAVLutX8bL0");
+                        break;
+                    case 6:
+                        goToUrl("https://youtu.be/FG7-8gAJ-5k");
+                        break;
+                    case 7:
+                        goToUrl("https://youtu.be/V4W5vNAP-t0");
+                        break;
+                    case 8:
+                        goToUrl("https://youtu.be/B_hJVREXkxo");
+                        break;
+                    case 9:
+                        goToUrl("https://youtu.be/4HOpxzgyNoo");
+                        break;
+                    case 10:
+                        goToUrl("https://youtu.be/MI3RMJ07zdU");
+                        break;
+                    case 11:
+                        goToUrl("https://youtu.be/qvs_hmpMsmQ");
+                        break;
+                    case 12:
+                        goToUrl("https://youtu.be/J_-M2HuO8Ng");
+                        break;
+                    case 13:
+                        goToUrl("https://youtu.be/KNJZqS6IwaU");
+                        break;
+                    case 14:
+                        goToUrl("https://youtu.be/GDb7diTDq9I");
+                        break;
+                    case 15:
+                        goToUrl("https://youtu.be/up20my-_yCY");
+                        break;
+                    case 16:
+                        goToUrl("https://youtu.be/FdUQaSjPPiQ");
+                        break;
+                    case 17:
+                        goToUrl("https://youtu.be/L9-AiQHBUc0");
+                        break;
+
                 }
-                else
-                if (position==1){
-                    goToUrl("https://youtu.be/KYhy6Q914C0");
-                }
-                else
-                if (position==2){
-                    goToUrl("https://youtu.be/pleAjW8KJrg");
-                }
-                else
-                if (position==3){
-                    goToUrl("https://youtu.be/0uU-DwqpY74");
-                }
+            }
+        });
+        back = (Button) findViewById(R.id.back);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
             }
         });
     }

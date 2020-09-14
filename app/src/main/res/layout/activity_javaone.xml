@@ -19,7 +19,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="30dp"
         android:layout_marginBottom="15dp"
         android:orientation="horizontal">
         <Button
@@ -61,6 +61,18 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:background="@drawable/video" />
+    <Button
+        android:id="@+id/back"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="115dp"
+        android:layout_marginRight="115dp"
+        android:background="#00828f"
+        android:text="Back"
+        android:textSize="20dp"
+        android:textAllCaps="false"
+        android:textColor="#f4f3f3" />
 
 
 </LinearLayout>

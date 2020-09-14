@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.os.Handler;
 import android.content.Intent;
+import android.webkit.WebView;
+
 import com.example.javapro.R;
 
 public class MainActivity extends AppCompatActivity {
@@ -20,5 +22,6 @@ public class MainActivity extends AppCompatActivity {
                 finish();
             }
         },splash);
+
     }
 }
