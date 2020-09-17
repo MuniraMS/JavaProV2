@@ -58,6 +58,9 @@ public class register extends AppCompatActivity implements View.OnClickListener 
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     if (!task.isSuccessful()) {
                                         Toast.makeText(getApplicationContext(), "registeration failed.\nMake sure you enter valid email.", Toast.LENGTH_SHORT).show();
+                                        username.setText("");
+                                        email.setText("");
+                                        password.setText("");
                                     }
                                     else {
                                         users user = new users (uName);

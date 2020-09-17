@@ -13,13 +13,26 @@
         android:id="@+id/imageView2"
         android:layout_width="match_parent"
         android:layout_height="519px"
+        android:layout_marginBottom="10dp"
         android:scaleType="fitXY"
         app:srcCompat="@drawable/about" />
+    <TextView
+        android:id="@+id/welcome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="25dp"
+        android:textStyle="bold"
+        android:layout_gravity="center"
+        android:visibility="invisible"
+        android:text="Welcome" />
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:layout_marginTop="70dp"
+        android:layout_marginBottom="70dp"
+        android:layout_gravity="center"
         android:gravity="center">
 
         <Button
@@ -34,5 +47,17 @@
             android:layout_height="wrap_content"
             android:background="@drawable/java2" />
     </LinearLayout>
-
+    <Button
+        android:id="@+id/logout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:background="#00828f"
+        android:text="Log out"
+        android:textSize="20dp"
+        android:visibility="invisible"
+        android:textAllCaps="false"
+        android:textColor="#f4f3f3"
+        />
 </LinearLayout>

@@ -25,15 +25,13 @@ public class login extends AppCompatActivity  {
     TextView notuser;
     EditText email,password;
     Button login;
-    FirebaseAuth firebaseAuth;
-    FirebaseDatabase firebaseDatabase;
-    private FirebaseAuth.AuthStateListener mAuthStateListener;
+    FirebaseAuth mFirebaseAuth;
+   FirebaseDatabase firebaseDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
         email = (EditText) findViewById(R.id.email);
         password = (EditText) findViewById(R.id.password);
         login = (Button) findViewById(R.id.button3);
@@ -42,24 +40,13 @@ public class login extends AppCompatActivity  {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(login.this, register.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);            }
         });
 
         firebaseDatabase = FirebaseDatabase.getInstance();
-        firebaseAuth=FirebaseAuth.getInstance();
+        mFirebaseAuth=FirebaseAuth.getInstance();
+        FirebaseUser userde = mFirebaseAuth.getCurrentUser();
 
-        mAuthStateListener = new FirebaseAuth.AuthStateListener() {
-            @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                FirebaseUser mFirebaseUser = firebaseAuth.getCurrentUser();
-                if (mFirebaseUser != null) {
-                    moveTocourses(mFirebaseUser);
-                } else {
-                    Toast.makeText(getApplicationContext(), "login failed", Toast.LENGTH_SHORT).show();
-                }
-            }
-        };
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -77,15 +64,24 @@ public class login extends AppCompatActivity  {
                 }
                 else
                 if (!(uEmail.isEmpty() && uPassword.isEmpty())) {
-                    firebaseAuth.signInWithEmailAndPassword(uEmail,uPassword)
+                    mFirebaseAuth.signInWithEmailAndPassword(uEmail,uPassword)
                      .addOnCompleteListener(login.this,new OnCompleteListener<AuthResult>() {
                          @Override
                          public void onComplete(@NonNull Task<AuthResult> task) {
                              if (!task.isSuccessful()) {
                                  Toast.makeText(getApplicationContext(), "login failed.\nMake sure you entered valid email and password.", Toast.LENGTH_SHORT).show();
+                                 email.setText("");
+                                 password.setText("");
                              }
                              else {
-                                 moveTocourses(task.getResult().getUser());
+                               // users user = snapshot.getValue(users.class);
+                                // String name = user.getUsername();
+
+                                // String name = mFirebaseAuth.getInstance().getCurrentUser().getDisplayName();
+                                 Toast.makeText(getApplicationContext(), "You've logged in successfully", Toast.LENGTH_SHORT).show();
+                                 Intent intent = new Intent(login.this, courses.class);
+                              //  intent.putExtra("username",name);
+                                 startActivity(intent);
                              }
                              }
                          });
@@ -98,32 +94,6 @@ public class login extends AppCompatActivity  {
         });
 
 
-    }
-    @Override
-    protected void onStart() {
-        super.onStart();
-        firebaseAuth.addAuthStateListener(mAuthStateListener);
-    }
-
-    private void moveTocourses(FirebaseUser mFirebaseUser) {
-        firebaseDatabase.getReference().child(mFirebaseUser.getUid())
-        .addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-             users user = snapshot.getValue(users.class);
-             String name = user.getUsername();
-                Toast.makeText(getApplicationContext(), "You've logged in successfully", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(login.this, courses.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                intent.putExtra("username",name);
-                startActivity(intent);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
     }
 
 }

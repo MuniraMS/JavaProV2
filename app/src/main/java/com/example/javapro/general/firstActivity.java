@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import com.example.javapro.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class firstActivity extends AppCompatActivity implements View.OnClickListener {
     Button  register, login, guest;
@@ -17,13 +19,11 @@ public class firstActivity extends AppCompatActivity implements View.OnClickList
         setContentView(R.layout.activity_first);
         register = (Button) findViewById(R.id.register);
         register.setOnClickListener(this);
-        /*register.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(firstActivity.this, register.class);
-                startActivity(intent);
-            }
-        });*/
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user!=null){
+            Intent intent = new Intent(firstActivity.this, courses.class);
+            startActivity(intent);
+        }
         login = (Button) findViewById(R.id.login);
         login.setOnClickListener(this);
         guest = (Button) findViewById(R.id.guest);
