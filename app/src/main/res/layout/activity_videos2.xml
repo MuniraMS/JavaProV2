@@ -16,8 +16,18 @@
         android:layout_gravity="center"
         android:text="Videos"
         android:layout_marginTop="10dp"
-        android:layout_marginBottom="15dp"
-        />
+        android:layout_marginBottom="15dp" />
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="15dp"
+        android:textColor="#FF0000"
+        android:textStyle="bold"
+        android:layout_gravity="center"
+        android:text="*Note: All the videos used in this section belong to their respective owner, Dr. Mohamed eldesouki.\nThe application owners doesn't claim any right over them."
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="15dp" />
     <ListView
         android:id="@+id/listview"
         android:layout_weight="1"
