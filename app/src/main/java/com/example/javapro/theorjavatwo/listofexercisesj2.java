@@ -22,7 +22,8 @@ public class listofexercisesj2 extends AppCompatActivity {
                 "Exercise ( 1 ) Object & classes ", "Exercise ( 2 ) More in Object & classes" ,
                 "Exercise ( 3 ) Composition" , "Exercise ( 4 ) Inheritance" ,
                 "Exercise ( 5 ) Arrays & arraylist" , "Exercise ( 6 ) polymorphism" ,
-                "Exercise ( 7 ) interfaces", "Exercise ( 8 ) exception handling"
+                "Exercise ( 7 ) interfaces", "Exercise ( 8 ) exception handling" ,
+                "Exercise ( 9 ) All chapters"
         };
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,
                 android.R.id.text1,titles);
@@ -60,6 +61,10 @@ public class listofexercisesj2 extends AppCompatActivity {
                 else
                 if (position==7){
                     Intent intent = new Intent (listofexercisesj2.this, j2exercise8.class);
+                    startActivity(intent); }
+                else
+                if (position==8){
+                    Intent intent = new Intent (listofexercisesj2.this, J2exercise9all.class);
                     startActivity(intent); }
             }
 

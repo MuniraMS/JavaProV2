@@ -95,5 +95,11 @@ public class login extends AppCompatActivity  {
 
 
     }
+    public void Forgot_Password(View view){
+
+        Intent forgot_pass=new Intent(getApplicationContext(),forgetpassword.class);
+        startActivity(forgot_pass);
+
+    }
 
 }
