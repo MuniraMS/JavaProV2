@@ -8,14 +8,21 @@ import com.example.javapro.slidesjavatwo.listofslidesj2;
 import com.example.javapro.theorjavatwo.listofexercisesj2;
 import com.example.javapro.videosjavatwo.videos2;
 import com.example.javapro.general.courses;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
+
 public class javatwo extends AppCompatActivity implements View.OnClickListener {
     Button txtbook,slide,pr,theor,video,back;
+    LinearLayout exercises;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +39,14 @@ public class javatwo extends AppCompatActivity implements View.OnClickListener {
         video.setOnClickListener(this);
         back = (Button) findViewById(R.id.back);
         back.setOnClickListener(this);
+        exercises= (LinearLayout) findViewById(R.id.exercises);
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user!=null){
+            exercises.setVisibility(View.VISIBLE);
+        }
+
+
+
     }
     public void onClick(View v) {
         if (v.getId() == R.id.book) {

@@ -23,8 +23,7 @@
         android:textSize="25dp"
         android:textStyle="bold"
         android:layout_gravity="center"
-        android:visibility="invisible"
-        android:text="Welcome" />
+        android:visibility="invisible" />
 
     <LinearLayout
         android:layout_width="wrap_content"

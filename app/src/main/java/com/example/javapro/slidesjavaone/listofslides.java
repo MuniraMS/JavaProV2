@@ -3,30 +3,50 @@ package com.example.javapro.slidesjavaone;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.javapro.R;
 import com.example.javapro.materials.javaone;
-
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.DatabaseReference;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Button;
+import com.example.javapro.model.PDFs;
+import java.util.ArrayList;
+import java.util.List;
+import android.net.Uri;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.ValueEventListener;
+import com.firebase.ui.database.FirebaseListAdapter;
+
 public class listofslides extends AppCompatActivity {
     ListView lstview;
     Button back;
+    DatabaseReference mDatabase;
+    FirebaseDatabase firebaseDatabase;
+    List<PDFs> list;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_listofslides);
-        lstview = findViewById(R.id.listview);
-        String [] titles = new String [] {
-                "1. Introduction", "2. Java basics ( I )" ,
-                "3. Java basics ( II )" , "4. Conditions" ,
-                "5. Loops" , "6. Methods" ,
-                "7. Arrays", "8. Objects & Classes"
-        };
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,
-                android.R.id.text1,titles);
-        lstview.setAdapter(adapter);
+        lstview = (ListView) findViewById(R.id.listview);
+        list = new ArrayList<>();
+        ViewAllFailes();
+       lstview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+           @Override
+           public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+               PDFs pdf= list.get(i);
+
+               Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(pdf.getUrl()));
+               startActivity(browserIntent);
+
+           }
+       });
+
         back = (Button) findViewById(R.id.back);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -36,4 +56,37 @@ public class listofslides extends AppCompatActivity {
             }
         });
     }
+    private void ViewAllFailes() {
+        mDatabase = FirebaseDatabase.getInstance().getReference().child("javaoneslide");
+
+        mDatabase.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot ds:snapshot.getChildren()){
+
+                    PDFs slides=ds.getValue(PDFs.class);
+                    list.add(slides);
+
+                }
+
+                String [] uploadslide = new String [list.size()];
+                for (int i=0;i<uploadslide.length;i++){
+
+                    uploadslide[i]=list.get(i).getName();
+
+                }
+                ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_list_item_1,uploadslide);
+                lstview.setAdapter(adapter);
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
+    }
+
 }

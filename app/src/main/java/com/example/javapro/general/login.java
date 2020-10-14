@@ -10,9 +10,12 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.widget.Button;
 import android.content.Intent;
 import android.view.View;
@@ -26,12 +29,16 @@ public class login extends AppCompatActivity  {
     EditText email,password;
     Button login;
     FirebaseAuth mFirebaseAuth;
-   FirebaseDatabase firebaseDatabase;
+    FirebaseDatabase firebaseDatabase;
+    AlertDialog.Builder builder1;
+
+    //DatabaseReference alluser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        builder1 = new AlertDialog.Builder(this);
         email = (EditText) findViewById(R.id.email);
         password = (EditText) findViewById(R.id.password);
         login = (Button) findViewById(R.id.button3);
@@ -69,10 +76,26 @@ public class login extends AppCompatActivity  {
                          @Override
                          public void onComplete(@NonNull Task<AuthResult> task) {
                              if (!task.isSuccessful()) {
-                                 Toast.makeText(getApplicationContext(), "login failed.\nMake sure you entered valid email and password.", Toast.LENGTH_SHORT).show();
-                                 email.setText("");
-                                 password.setText("");
+                                 builder1.setCancelable(false);
+                                 builder1.setTitle("warning");
+                                 builder1.setMessage("You have entered invalid parameters.\nPress ok to try again or sign up to create an account.");
+                                 builder1.setPositiveButton("Ok",new DialogInterface.OnClickListener() {
+                                     @Override
+                                     public void onClick(DialogInterface dialog, int id) {
+                                         email.setText("");
+                                         password.setText("");
+                                     }})
+                                         .setNegativeButton("sign up",new DialogInterface.OnClickListener() {
+                                             @Override
+                                             public void onClick(DialogInterface dialog, int which) {
+                                                 Intent intent = new Intent(login.this, register.class);
+                                                 startActivity(intent);
+                                             }
+                                         });
+                                 final AlertDialog alert = builder1.create();
+                                 alert.show();
                              }
+
                              else {
                                // users user = snapshot.getValue(users.class);
                                 // String name = user.getUsername();
