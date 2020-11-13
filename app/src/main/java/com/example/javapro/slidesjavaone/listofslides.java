@@ -13,6 +13,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Button;
 import com.example.javapro.model.PDFs;
+import com.example.javapro.model.MyAdapter;
 import java.util.ArrayList;
 import java.util.List;
 import android.net.Uri;
@@ -22,20 +23,27 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
 import com.firebase.ui.database.FirebaseListAdapter;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 public class listofslides extends AppCompatActivity {
     ListView lstview;
     Button back;
     DatabaseReference mDatabase;
     FirebaseDatabase firebaseDatabase;
+    StorageReference storageRef;
     List<PDFs> list;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_listofslides);
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        storageRef= FirebaseStorage.getInstance().getReference();
         lstview = (ListView) findViewById(R.id.listview);
         list = new ArrayList<>();
+
         ViewAllFailes();
+
        lstview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
            @Override
            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -58,7 +66,6 @@ public class listofslides extends AppCompatActivity {
     }
     private void ViewAllFailes() {
         mDatabase = FirebaseDatabase.getInstance().getReference().child("javaoneslide");
-
         mDatabase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -69,13 +76,16 @@ public class listofslides extends AppCompatActivity {
 
                 }
 
-                String [] uploadslide = new String [list.size()];
+               /* String [] uploadslide = new String [list.size()];
                 for (int i=0;i<uploadslide.length;i++){
 
                     uploadslide[i]=list.get(i).getName();
 
                 }
                 ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_list_item_1,uploadslide);
+                lstview.setAdapter(adapter);*/
+                MyAdapter adapter = new MyAdapter(getApplicationContext(), list);
+
                 lstview.setAdapter(adapter);
 
             }
@@ -88,5 +98,6 @@ public class listofslides extends AppCompatActivity {
 
 
     }
+
 
 }

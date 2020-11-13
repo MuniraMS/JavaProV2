@@ -2,6 +2,15 @@ package com.example.javapro.theorjavaone;
 
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.javapro.R;
+import com.example.javapro.model.users;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -18,6 +27,7 @@ public class J1exercise1 extends AppCompatActivity {
     Button submitbutton, quitbutton;
     RadioGroup radio_g;
     RadioButton rb1,rb2,rb3;
+    DatabaseReference mUserDatabase;
     String questions[] = {
             "Example(s) of application programs ?",
             "Application programs and operating systems ?",
