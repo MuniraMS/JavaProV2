@@ -17,7 +17,9 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 
 public class bookmarkedj2 extends AppCompatActivity {
     ListView listView;
@@ -30,16 +32,21 @@ public class bookmarkedj2 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bookmarkedj2);
+        String[] lectures = new String[]{"1. Object & classes","2. More in object & classes",
+        "3. Composition","4. Inheritence","5. Array & Arraylists","6. Polymorphism",
+        "7. Interfaces","8. Exception Handling","9. Files and Streams"};
+        final List<String> list = Arrays.asList(lectures);
         msg = (TextView) findViewById(R.id.msg);
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         firebaseDatabase = FirebaseDatabase.getInstance();
-        databaseReference = firebaseDatabase.getReference("allusers").child(user.getUid()).child("JavaTwo");
+        databaseReference = firebaseDatabase.getReference("allusers").child(user.getUid()).child("Bookmarks");
         listView = (ListView) findViewById(R.id.lstview);
         databaseReference.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 String value=dataSnapshot.getValue(String.class);
                 arrayList.add(value);
+                arrayList.retainAll(list);
                 Collections.sort(arrayList);
                 arrayAdapter = new ArrayAdapter<String>(bookmarkedj2.this, android.R.layout.simple_list_item_1, arrayList);
                 listView.setAdapter(arrayAdapter);

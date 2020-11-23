@@ -6,9 +6,6 @@ import com.example.javapro.R;
 import com.example.javapro.materials.javatwo;
 import com.example.javapro.model.MyAdapter;
 import com.example.javapro.model.PDFs;
-import com.example.javapro.model.SecondAdapter;
-import com.example.javapro.slidesjavaone.bookmarkedj1;
-import com.example.javapro.slidesjavaone.listofslides;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -98,17 +95,7 @@ public class listofslidesj2 extends AppCompatActivity {
                     list.add(slides);
 
                 }
-
-               /* String [] uploadslide = new String [list.size()];
-                for (int i=0;i<uploadslide.length;i++){
-
-                    uploadslide[i]=list.get(i).getName();
-
-                }
-                ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_list_item_1,uploadslide);
-                lstview.setAdapter(adapter);*/
-                SecondAdapter adapter = new SecondAdapter(getApplicationContext(), list);
-
+                MyAdapter adapter = new MyAdapter(getApplicationContext(), list);
                 lstview.setAdapter(adapter);
 
             }

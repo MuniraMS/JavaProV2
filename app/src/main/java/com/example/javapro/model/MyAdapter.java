@@ -23,7 +23,7 @@ public class MyAdapter extends BaseAdapter {
     DatabaseReference mDatabase;
     FirebaseDatabase firebaseDatabase;
     List<PDFs> list;
-    List<String> bookmarkj1=new ArrayList<String>();
+    List<String> bookmarks=new ArrayList<String>();
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
     public MyAdapter(Context context,  List<PDFs> list) {
@@ -67,20 +67,20 @@ public class MyAdapter extends BaseAdapter {
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                 if (user != null) {
                         loadJavaone(context);
-                        if (bookmarkj1.contains(list.get(position).getName())) {
-                            bookmarkj1.remove(list.get(position).getName());
-                            Toast.makeText(context.getApplicationContext(), "deleted j1", Toast.LENGTH_SHORT).show();
+                        if (bookmarks.contains(list.get(position).getName())) {
+                            bookmarks.remove(list.get(position).getName());
+                            Toast.makeText(context.getApplicationContext(), "Lecture deleted from your bookmarks.", Toast.LENGTH_SHORT).show();
                             saveJavaone();
                         }
                         else {
-                            bookmarkj1.add(list.get(position).getName());
+                            bookmarks.add(list.get(position).getName());
                             saveJavaone();
-                            Toast.makeText(context.getApplicationContext(), "You've booked in successfully j1", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(context.getApplicationContext(), "Lecture added to your bookmarks.", Toast.LENGTH_SHORT).show();
                             notifyDataSetChanged();
                         }
 
                     mDatabase = FirebaseDatabase.getInstance().getReference();
-                    mDatabase.child("allusers").child(user.getUid()).child("JavaOne").setValue(bookmarkj1);
+                    mDatabase.child("allusers").child(user.getUid()).child("Bookmarks").setValue(bookmarks);
                 }
                 else{
                     Toast.makeText(context.getApplicationContext(), "This feature for registered users only", Toast.LENGTH_SHORT).show();
@@ -98,23 +98,23 @@ public class MyAdapter extends BaseAdapter {
     {
         SharedPreferences sharedPreferences = context.getSharedPreferences(user.getUid(),context.MODE_PRIVATE);
         SharedPreferences.Editor mEdit1 = sharedPreferences.edit();
-        mEdit1.putInt("mylist_size", bookmarkj1.size());
-        for(int i=0;i<bookmarkj1.size();i++)
+        mEdit1.putInt("mylist_size", bookmarks.size());
+        for(int i=0;i<bookmarks.size();i++)
         {
             mEdit1.remove("mylist" + i);
-            mEdit1.putString("mylist" + i, bookmarkj1.get(i));
+            mEdit1.putString("mylist" + i, bookmarks.get(i));
         }
          mEdit1.apply();
     }
     public  void loadJavaone(Context mContext)
     {
         SharedPreferences sharedPreferences = context.getSharedPreferences(user.getUid(),context.MODE_PRIVATE);
-        bookmarkj1.clear();
+        bookmarks.clear();
         int size = sharedPreferences.getInt("mylist_size", 0);
 
         for(int i=0;i<size;i++)
         {
-            bookmarkj1.add(sharedPreferences.getString("mylist" + i, null));
+            bookmarks.add(sharedPreferences.getString("mylist" + i, null));
         }
     }
 

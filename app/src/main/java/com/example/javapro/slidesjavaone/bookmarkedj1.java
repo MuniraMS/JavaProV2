@@ -32,12 +32,13 @@ public class bookmarkedj1 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bookmarkedj1);
-        String[] alphabet = new String[]{"5. Loops", "7. Arrays", "4. Conditions"};
-        final  List<String>  list = Arrays.asList(alphabet);
+        String[] lectures = new String[]{"1. Introduction", "2. Java basics (I)", "3. Java basics (II)",
+        "4. Conditions","5. Loops","6. Methods","7. Arrays","8. Objects & Classes"};
+        final  List<String>  list = Arrays.asList(lectures);
         msg = (TextView) findViewById(R.id.msg);
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         firebaseDatabase = FirebaseDatabase.getInstance();
-        databaseReference = firebaseDatabase.getReference("allusers").child(user.getUid()).child("JavaOne");
+        databaseReference = firebaseDatabase.getReference("allusers").child(user.getUid()).child("Bookmarks");
         listView = (ListView) findViewById(R.id.lstview);
         databaseReference.addChildEventListener(new ChildEventListener() {
             @Override
