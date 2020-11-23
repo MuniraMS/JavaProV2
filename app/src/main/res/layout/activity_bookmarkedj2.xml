@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#f4f3f3"
+    tools:context=".slidesjavatwo.bookmarkedj2">
+    <TextView
+        android:id="@+id/msg"
+        android:textSize="15dp"
+        android:layout_marginTop="250dp"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:text="You haven't added any lectures to your bookmarks yet.\nWhen you do, they'll show up here." />
+
+    <ListView
+        android:id="@+id/lstview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+</LinearLayout>

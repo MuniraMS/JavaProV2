@@ -18,15 +18,14 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.List;
 import java.util.ArrayList;
 
-public class MyAdapter extends BaseAdapter {
+public class SecondAdapter extends BaseAdapter {
     private Context context; //context
     DatabaseReference mDatabase;
+    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     FirebaseDatabase firebaseDatabase;
     List<PDFs> list;
-    List<String> bookmarkj1=new ArrayList<String>();
-    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-
-    public MyAdapter(Context context,  List<PDFs> list) {
+    List<String> bookmarkj2=new ArrayList<String>();
+    public SecondAdapter(Context context,  List<PDFs> list) {
         this.context = context;
         this.list = list;
     }
@@ -59,28 +58,28 @@ public class MyAdapter extends BaseAdapter {
 
         final ImageView imageView = (ImageView)
                 convertView.findViewById(R.id.imgview12);
-        //imageView.setImageResource(list.get(position).getImg());
+     //   imageView.setImageResource(list.get(position).getImg());
         textViewItemName.setText(list.get(position).getName());
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                 if (user != null) {
-                        loadJavaone(context);
-                        if (bookmarkj1.contains(list.get(position).getName())) {
-                            bookmarkj1.remove(list.get(position).getName());
-                            Toast.makeText(context.getApplicationContext(), "deleted j1", Toast.LENGTH_SHORT).show();
-                            saveJavaone();
-                        }
-                        else {
-                            bookmarkj1.add(list.get(position).getName());
-                            saveJavaone();
-                            Toast.makeText(context.getApplicationContext(), "You've booked in successfully j1", Toast.LENGTH_SHORT).show();
-                            notifyDataSetChanged();
-                        }
+                    loadJavatwo(context);
+                    if (bookmarkj2.contains(list.get(position).getName())) {
+                        bookmarkj2.remove(list.get(position).getName());
+                        Toast.makeText(context.getApplicationContext(), "deleted j1", Toast.LENGTH_SHORT).show();
+                        saveJavatwo();
+                    }
+                    else {
+                        bookmarkj2.add(list.get(position).getName());
+                        saveJavatwo();
+                        Toast.makeText(context.getApplicationContext(), "You've booked in successfully j1", Toast.LENGTH_SHORT).show();
+                        notifyDataSetChanged();
+                    }
 
                     mDatabase = FirebaseDatabase.getInstance().getReference();
-                    mDatabase.child("allusers").child(user.getUid()).child("JavaOne").setValue(bookmarkj1);
+                    mDatabase.child("allusers").child(user.getUid()).child("JavaTwo").setValue(bookmarkj2);
                 }
                 else{
                     Toast.makeText(context.getApplicationContext(), "This feature for registered users only", Toast.LENGTH_SHORT).show();
@@ -94,27 +93,27 @@ public class MyAdapter extends BaseAdapter {
     }
 
 
-    public  void saveJavaone()
+    public  void saveJavatwo()
     {
         SharedPreferences sharedPreferences = context.getSharedPreferences(user.getUid(),context.MODE_PRIVATE);
         SharedPreferences.Editor mEdit1 = sharedPreferences.edit();
-        mEdit1.putInt("mylist_size", bookmarkj1.size());
-        for(int i=0;i<bookmarkj1.size();i++)
+        mEdit1.putInt("mylist_size2", bookmarkj2.size());
+        for(int i=0;i<bookmarkj2.size();i++)
         {
-            mEdit1.remove("mylist" + i);
-            mEdit1.putString("mylist" + i, bookmarkj1.get(i));
+            mEdit1.remove("mylist2" + i);
+            mEdit1.putString("mylist2" + i, bookmarkj2.get(i));
         }
-         mEdit1.apply();
+        mEdit1.apply();
     }
-    public  void loadJavaone(Context mContext)
+    public  void loadJavatwo(Context mContext)
     {
         SharedPreferences sharedPreferences = context.getSharedPreferences(user.getUid(),context.MODE_PRIVATE);
-        bookmarkj1.clear();
-        int size = sharedPreferences.getInt("mylist_size", 0);
+        bookmarkj2.clear();
+        int size = sharedPreferences.getInt("mylist_size2", 0);
 
         for(int i=0;i<size;i++)
         {
-            bookmarkj1.add(sharedPreferences.getString("mylist" + i, null));
+            bookmarkj2.add(sharedPreferences.getString("mylist2" + i, null));
         }
     }
 

@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".general.tryingret"></activity>
+        <activity android:name=".slidesjavatwo.bookmarkedj2"></activity>
+        <activity android:name=".slidesjavaone.bookmarkedj1" />
         <activity android:name=".general.forgetpassword" />
         <activity android:name=".theorjavatwo.J2exercise9all" />
         <activity android:name=".theorjavaone.J1exercise9all" />
