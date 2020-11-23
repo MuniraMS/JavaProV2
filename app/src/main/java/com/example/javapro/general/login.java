@@ -31,9 +31,6 @@ public class login extends AppCompatActivity  {
     FirebaseAuth mFirebaseAuth;
     FirebaseDatabase firebaseDatabase;
     AlertDialog.Builder builder1;
-
-    //DatabaseReference alluser;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -97,13 +94,8 @@ public class login extends AppCompatActivity  {
                              }
 
                              else {
-                               // users user = snapshot.getValue(users.class);
-                                // String name = user.getUsername();
-
-                                // String name = mFirebaseAuth.getInstance().getCurrentUser().getDisplayName();
                                  Toast.makeText(getApplicationContext(), "You've logged in successfully", Toast.LENGTH_SHORT).show();
                                  Intent intent = new Intent(login.this, courses.class);
-                              //  intent.putExtra("username",name);
                                  startActivity(intent);
                              }
                              }
@@ -115,14 +107,9 @@ public class login extends AppCompatActivity  {
                 }
             }
         });
-
-
     }
     public void Forgot_Password(View view){
-
         Intent forgot_pass=new Intent(getApplicationContext(),forgetpassword.class);
         startActivity(forgot_pass);
-
     }
-
 }

@@ -22,22 +22,12 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <!-- <ImageView
+         <ImageView
             android:id="@+id/imgview12"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:src="@drawable/bookmark" /> -->
-        <com.sackcentury.shinebuttonlib.ShineButton
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginRight="5dp"
-            android:id="@+id/shine"
-            app:btn_color="@android:color/darker_gray"
-            app:btn_fill_color="#FF6666"
-            app:allow_random_color="false"
-            app:enable_flashing="false"
-            app:big_shine_color="#FF6666"
-            app:siShape="@raw/star"/>
+             android:clickable="true"
+            android:src="@drawable/bookmark" />
 
     </LinearLayout>
 </LinearLayout>

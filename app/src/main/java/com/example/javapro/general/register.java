@@ -80,33 +80,27 @@ public class register extends AppCompatActivity implements View.OnClickListener 
                                     }
                                     else {
                                         users user = new users (uName);
-                                        String userID = task.getResult().getUser().getUid();
-                                       // firebaseDatabase.getReference(userID).setValue(user)
+                                        final String userID = task.getResult().getUser().getUid();
                                         firebaseDatabase.getReference("allusers").child(userID).setValue(user)
                                        .addOnSuccessListener(new OnSuccessListener<Void>() {
                                            @Override
                                            public void onSuccess(Void aVoid) {
                                                Toast.makeText(getApplicationContext(), "You've signed up successfully", Toast.LENGTH_SHORT).show();
                                                Intent intent = new Intent(register.this, courses.class);
-                                             //  intent.putExtra("kjshf",uName);
                                                startActivity(intent);
                                            }
 
                                        });
                                     }
-
                                 }
                             });
                 }
                 else {
                     Toast.makeText(getApplicationContext(), "a problem occured", Toast.LENGTH_SHORT).show();
                 }
-
             }
         });
-
     }
-
     public void onClick(View v) {
         if (v.getId() == R.id.textView3) {
             Intent intent = new Intent(register.this, login.class);

@@ -48,6 +48,5 @@ public class uploadPDF {
         firebaseDatabase.getReference("javatwoslide").push().setValue(j1L7);
         firebaseDatabase.getReference("javatwoslide").push().setValue(j1L8);
         firebaseDatabase.getReference("javatwoslide").push().setValue(j1L9);
-
     }
 }

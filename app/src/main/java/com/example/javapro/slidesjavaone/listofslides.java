@@ -13,6 +13,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Button;
 import com.example.javapro.model.PDFs;
+import com.example.javapro.general.tryingret;
 import com.example.javapro.model.MyAdapter;
 import java.util.ArrayList;
 import java.util.List;
@@ -41,25 +42,20 @@ public class listofslides extends AppCompatActivity {
         storageRef= FirebaseStorage.getInstance().getReference();
         lstview = (ListView) findViewById(R.id.listview);
         list = new ArrayList<>();
-
         ViewAllFailes();
-
        lstview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
            @Override
            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                PDFs pdf= list.get(i);
-
                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(pdf.getUrl()));
                startActivity(browserIntent);
-
            }
        });
-
         back = (Button) findViewById(R.id.back);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(listofslides.this, javaone.class);
+                Intent intent = new Intent(listofslides.this, tryingret.class);
                 startActivity(intent);
             }
         });
@@ -70,34 +66,15 @@ public class listofslides extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot ds:snapshot.getChildren()){
-
                     PDFs slides=ds.getValue(PDFs.class);
                     list.add(slides);
-
                 }
-
-               /* String [] uploadslide = new String [list.size()];
-                for (int i=0;i<uploadslide.length;i++){
-
-                    uploadslide[i]=list.get(i).getName();
-
-                }
-                ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_list_item_1,uploadslide);
-                lstview.setAdapter(adapter);*/
                 MyAdapter adapter = new MyAdapter(getApplicationContext(), list);
-
                 lstview.setAdapter(adapter);
-
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
             }
         });
-
-
     }
-
-
 }

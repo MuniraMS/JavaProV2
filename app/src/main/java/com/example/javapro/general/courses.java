@@ -39,22 +39,20 @@ public class courses extends AppCompatActivity implements View.OnClickListener{
         });
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user!=null){
-       String current_uid = user.getUid();
+        String current_uid = user.getUid();
         mUserDatabase = FirebaseDatabase.getInstance().getReference().child("allusers")
                 .child(current_uid);
+
         mUserDatabase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                 String name = dataSnapshot.child("username").getValue().toString();
-                msg.setText("Welcome " + name + " :D");
+                        String name = dataSnapshot.child("username").getValue().toString();
+                        msg.setText("Welcome " + name + " :D");
             }
-
             @Override
             public void onCancelled(DatabaseError databaseError) {
-
             }
         });
-
             msg.setVisibility(View.VISIBLE);
             signout.setVisibility(View.VISIBLE);
         }
@@ -82,5 +80,4 @@ public class courses extends AppCompatActivity implements View.OnClickListener{
         startActivity(intent);
         finish();
     }
-
 }

@@ -35,9 +35,8 @@ public class arrayp extends AppCompatActivity {
             public void onClick(View v) {
                 if(answer.getVisibility()==View.GONE){
                     answer.setVisibility(View.VISIBLE); }
-
                 else {
-                    answer.setVisibility(View.GONE); }            }
+                    answer.setVisibility(View.GONE); }}
         });
     }
     public void gotocompiler (View view) {
@@ -52,11 +51,9 @@ public class arrayp extends AppCompatActivity {
                         goToUrl ( "https://rextester.com/l/java_online_compiler");
                     }
                 });
-
         AlertDialog alert11 = builder1.create();
         alert11.show();
     }
-
     private void goToUrl (String url) {
         Uri uriUrl = Uri.parse(url);
         Intent launchBrowser = new Intent(Intent.ACTION_VIEW, uriUrl);

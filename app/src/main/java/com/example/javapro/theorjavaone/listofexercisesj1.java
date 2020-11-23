@@ -24,8 +24,7 @@ public class listofexercisesj1 extends AppCompatActivity {
                 "Exercise ( 3 ) Java basics ( II )" , "Exercise ( 4 ) conditions" ,
                 "Exercise ( 5 ) loops" , "Exercise ( 6 ) methods" ,
                 "Exercise ( 7 ) arrays", "Exercise ( 8 ) objects & classes" ,
-                "Exercise ( 9 ) All chapters"
-        };
+                "Exercise ( 9 ) All chapters"};
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,
                 android.R.id.text1,titles);
         lstview.setAdapter(adapter);

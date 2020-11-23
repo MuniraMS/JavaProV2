@@ -119,7 +119,5 @@ public class J1exercise1 extends AppCompatActivity {
               finish();
             }
         });
-
     }
-
 }

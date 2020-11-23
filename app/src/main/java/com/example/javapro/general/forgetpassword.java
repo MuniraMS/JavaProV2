@@ -44,7 +44,6 @@ public class forgetpassword extends AppCompatActivity {
                             finish();
                         }else {
                             Toast.makeText(getApplicationContext(),"Please enter a valid email",Toast.LENGTH_LONG).show();
-                           // Toast.makeText(getApplicationContext(),task.getException().getMessage(),Toast.LENGTH_SHORT).show();
                             editEmail.setText("");
                         }
                     }
